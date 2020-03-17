@@ -53,7 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
 var headerMenu = document.querySelector('header .header_menu'),
     headerMenuButtonOpen = headerMenu.querySelector('.header_menu-button'),
     headerMenuButtonClose = headerMenu.querySelector('.btn-close'),
-    headerMenuBlock = headerMenu.querySelector('.header_menu-nav--wrapper');
+    headerMenuBlock = headerMenu.querySelector('.header_menu-nav--wrapper'),
+    headerRequestCallButton = document.querySelector('.header .header_call'),
+    requestNotificationButton = document.querySelector('.call-when-open'),
+    modalContainer = document.querySelector('.modals'),
+    modalsList = modalContainer.querySelectorAll('.modal'),
+    modalCloseButtons = document.querySelectorAll('.modals .modal .btn-close'),
+    modalRequest = document.querySelector('.modals #request'),
+    modalNotification = document.querySelector('.modals #notification');
 
 function ToggleMenuVisibility() {
   if (headerMenuBlock.classList.contains('show')) {
@@ -68,7 +75,39 @@ headerMenuButtonOpen.addEventListener('click', ToggleMenuVisibility);
 headerMenuButtonClose.addEventListener('click', ToggleMenuVisibility);
 headerMenuBlock.querySelector('.header_menu-nav').addEventListener('click', function (e) {
   e.stopPropagation();
-}); // Add a function that generates pagination to prototype
+});
+headerRequestCallButton.addEventListener('click', function () {
+  modalContainer.classList.add('active');
+  modalRequest.classList.add('active');
+});
+
+if (requestNotificationButton) {
+  requestNotificationButton.addEventListener('click', function () {
+    modalContainer.classList.add('active');
+    modalNotification.classList.add('active');
+  });
+}
+
+modalContainer.addEventListener('click', function () {
+  modalContainer.classList.remove('active');
+  modalRequest.classList.remove('active');
+  modalNotification.classList.remove('active');
+});
+
+for (var m = 0; m < modalsList.length; m++) {
+  modalsList[m].addEventListener('close', function (e) {
+    e.stopPropagation();
+  });
+}
+
+for (var b = 0; b < modalCloseButtons.length; b++) {
+  modalCloseButtons[b].addEventListener('click', function () {
+    modalContainer.classList.remove('active');
+    modalRequest.classList.remove('active');
+    modalNotification.classList.remove('active');
+  });
+} // Add a function that generates pagination to prototype
+
 
 Siema.prototype.addPagination = function () {
   var _this = this;
