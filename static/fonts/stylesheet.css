@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Madelyn';
+    src: url('Madelyn-Regular.eot');
+    src: url('Madelyn-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Madelyn-Regular.woff2') format('woff2'),
+        url('Madelyn-Regular.woff') format('woff'),
+        url('Madelyn-Regular.ttf') format('truetype'),
+        url('Madelyn-Regular.svg#Madelyn-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
