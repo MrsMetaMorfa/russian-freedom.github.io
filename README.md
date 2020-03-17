@@ -1,4 +1,4 @@
-# russian-seasons.github.io
+# russian-freedom.github.io
 
 'images/content' - иконки. По-хорошему нужно собрать в спрайт, но оставила на случай, если нужно будет заменить.
 
