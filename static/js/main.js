@@ -74,7 +74,7 @@ headerMenuBlock.addEventListener('click', ToggleMenuVisibility);
 headerMenuButtonOpen.addEventListener('click', ToggleMenuVisibility);
 headerMenuButtonClose.addEventListener('click', ToggleMenuVisibility);
 headerMenuBlock.querySelector('.header_menu-nav').addEventListener('click', function (e) {
-  e.stopPropagation();
+  return e.stopPropagation();
 });
 headerRequestCallButton.addEventListener('click', function () {
   modalContainer.classList.add('active');
@@ -96,7 +96,7 @@ modalContainer.addEventListener('click', function () {
 
 for (var m = 0; m < modalsList.length; m++) {
   modalsList[m].addEventListener('close', function (e) {
-    e.stopPropagation();
+    return e.stopPropagation();
   });
 }
 
@@ -141,4 +141,46 @@ if (document.querySelector('.feedback')) {
     perPage: 2
   });
   feedbackCarousel.addPagination();
+}
+
+if (document.querySelector('.main--tours .tours_list--inner')) {
+  var toursListInner = document.querySelector('.main--tours .tours_list--inner'),
+      toursList = document.querySelector('.main--tours .tours_list'),
+      toursListTop = toursList.offsetTop,
+      toursItemList = toursListInner.querySelectorAll('.tour');
+
+  if (toursItemList.length <= 2) {
+    for (var t = 0; t < toursItemList.length; t++) {
+      toursItemList[t].classList.add('tour--big');
+    }
+  }
+
+  var differents = toursListInner.offsetHeight - toursList.offsetHeight,
+      translate = 0;
+
+  toursListInner.onwheel = function (e) {
+    if (differents > 0) {
+      if (translate <= 0 && e.deltaY < 0) {
+        translate = 0;
+      } else {
+        translate = translate + e.deltaY;
+
+        if (translate > differents) {
+          translate = differents;
+        }
+      }
+
+      for (var r = 0; r < toursItemList.length; r++) {
+        console.log(toursItemList[r].offsetTop - translate, toursListTop);
+
+        if (translate - toursItemList[r].offsetTop > toursListTop) {
+          toursItemList[r].classList.add('opaque');
+        } else {
+          toursItemList[r].classList.remove('opaque');
+        }
+      }
+
+      toursListInner.style.transform = "translateY(" + translate * -1 + "px)";
+    }
+  };
 }
