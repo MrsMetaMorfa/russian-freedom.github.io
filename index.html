@@ -10,9 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script><![endif]-->
   </head>
   <body>
-    <picture class="image-background"><img src="static/images/general/main-bg.jpg" alt="Бенгальский залив"></picture>
+    <picture class="image-background"><img class="main" src="static/images/general/main-bg.jpg" alt="Бенгальский залив"><img class="tours-carousel_bg" src="static/images/general/bg-arctic-main.jpg" alt="Бенгальский залив"><img class="tours-carousel_bg" src="static/images/general/bg-baikal-main.jpg" alt="Бенгальский залив"><img class="tours-carousel_bg" src="static/images/general/bg-petersburg-main.jpg" alt="Бенгальский залив"><img class="tours-carousel_bg" src="static/images/general/bg-moscow-main.jpg" alt="Бенгальский залив"></picture>
     <main class="main">
-      <header class="header wrapper container container--justifyed container--aligned-center">
+      <header class="header wrapper container container--justifyed container--aligned-center"><a class="header_back btn" href="#"><img src="static/images/content/left.svg" alt="Go Back"></a>
         <div class="header_left container container--aligned-center"><a class="header_logo btn" href="./"><img src="static/images/general/russian_logo_min_light.svg" alt="Russian Freedom"></a>
           <div class="header_language">
             <button class="btn container container--aligned-center" type="button"><img src="static/images/general/rus.png" alt="Russian language"><span class="btn btn-underlined">Change language</span></button>
@@ -56,13 +56,41 @@
         <h2 class="p_subtitle center bold center uppercase">Выбери свое направление</h2>
         <div class="divider"></div>
       </div>
-      <div class="tours container container--justifyed"><a class="btn btn-arrow" href="" aria-label=""><img src="static/images/content/left.svg" alt=""></a>
-        <ul class="tours-list container container--justifyed">
-          <li class="tours-list_item"><a class="btn container--column container--centered center" href="arctic-index.html"><img src="static/images/general/russian_logo_tour_arctic.svg"><span class="divider"></span><span class="uppercase title">Мурманск</span></a></li>
-          <li class="tours-list_item"><a class="btn container--column container--centered center" href="baikal-index.html"><img src="static/images/general/russian_logo_tour_baikal.svg"><span class="divider"></span><span class="uppercase title">Иркутск</span></a></li>
-          <li class="tours-list_item"><a class="btn container--column container--centered center" href="petersburg-index.html"><img src="static/images/general/russian_logo_tour_petersburg.svg"><span class="divider"></span><span class="uppercase title">Санкт-петербург</span></a></li>
-          <li class="tours-list_item"><a class="btn container--column container--centered center" href="moscow-index.html"><img src="static/images/general/russian_logo_tour_moscow.svg"><span class="divider"></span><span class="uppercase title">Москва</span></a></li>
-        </ul><a class="btn btn-arrow" href="" aria-label=""><img src="static/images/content/right.svg" alt=""></a>
+      <div class="tours-carousel_content">
+        <div class="wrapper content content--main container container--column container--centered container--justifyed">
+          <h1 class="p_title center font-beauty">Культурный Бенгальский залив</h1>
+          <p class="p_description center">Винный фестиваль проходит в приусадебном музее Георгикон, там же пустыня применяет очаг многовекового орошаемого земледелия</p>
+          <h2 class="p_subtitle center bold center uppercase">Выбери свое направление</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="wrapper content content--main container container--column container--centered container--justifyed">
+          <h1 class="p_title center font-beauty">Культурный Бенгальский залив</h1>
+          <p class="p_description center">Винный фестиваль проходит в приусадебном музее Георгикон, там же пустыня применяет очаг многовекового орошаемого земледелия</p>
+          <h2 class="p_subtitle center bold center uppercase">Выбери свое направление</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="wrapper content content--main container container--column container--centered container--justifyed">
+          <h2 class="p_subtitle center bold center uppercase in-progress">Тур в разработке</h2>
+          <div class="divider in-progress"></div>
+          <h1 class="p_title center font-beauty">Туры в Санкт-Петербург</h1>
+          <p class="p_description center">Город насчитывает множество дворцов: от великолепных императорских резиденций до дворянских домов.</p>
+          <button class="btn btn-default btn-rounded call-when-open" type="button">сообщить об открытии</button>
+        </div>
+        <div class="wrapper content content--main container container--column container--centered container--justifyed">
+          <h2 class="p_subtitle center bold center uppercase in-progress">Тур в разработке</h2>
+          <div class="divider in-progress"></div>
+          <h1 class="p_title center font-beauty">Туры в Москву</h1>
+          <p class="p_description center">Экскурсиями по Москве, посещением московского Кремля и Красной площади, прогулкой по Александровскому Саду и кварталу небоскребов «Москва-Сити»</p>
+          <button class="btn btn-default btn-rounded call-when-open" type="button">сообщить об открытии</button>
+        </div>
+      </div>
+      <div class="tours-carousel_slides container container--justifyed"><a class="btn btn-arrow" href="" aria-label=""><img src="static/images/content/left.svg" alt=""></a>
+        <div class="tours-list container container--justifyed">
+          <div class="tours-list_item"><a class="btn container--column container--centered center" href="arctic-tours.html"><img src="static/images/general/russian_logo_tour_arctic.svg"><span class="divider"></span><span class="uppercase title">Мурманск</span></a></div>
+          <div class="tours-list_item"><a class="btn container--column container--centered center" href="arctic-tours.html"><img src="static/images/general/russian_logo_tour_baikal.svg"><span class="divider"></span><span class="uppercase title">Иркутск</span></a></div>
+          <div class="tours-list_item"><a class="btn container--column container--centered center" href="petersburg-index.html"><img src="static/images/general/russian_logo_tour_petersburg.svg"><span class="divider"></span><span class="uppercase title">Санкт-петербург</span></a></div>
+          <div class="tours-list_item"><a class="btn container--column container--centered center" href="moscow-index.html"><img src="static/images/general/russian_logo_tour_moscow.svg"><span class="divider"></span><span class="uppercase title">Москва</span></a></div>
+        </div><a class="btn btn-arrow" href="" aria-label=""><img src="static/images/content/right.svg" alt=""></a>
       </div>
       <ul class="socials container">
         <li class="socials_link"><a class="btn" href="#" aria-label="Instagram"><img src="static/images/content/instagram.svg" alt="Instagram"></a></li>
