@@ -99,8 +99,8 @@ modalContainer.addEventListener('click', function () {
 });
 
 for (var m = 0; m < modalsList.length; m++) {
-  modalsList[m].addEventListener('close', function (e) {
-    return e.stopPropagation();
+  modalsList[m].addEventListener('click', function (event) {
+    return event.stopPropagation();
   });
 }
 
@@ -248,6 +248,65 @@ if (document.querySelector('.tours-carousel_slides')) {
       contentMain.classList.remove('hidden');
       imagesListWrapper.classList.remove('active');
       imagesListMain.classList.remove('hidden');
+      slides.querySelector('.tours-list_item .btn.active').classList.remove('active');
+      slidesCarouselCurrentPrev = 0;
+      slidesCarousel.currentSlide = 0;
+    };
+
+    var SetNextSlide = function SetNextSlide() {
+      if (slidesCarouselCurrentPrev == slidesCarousel.currentSlide) {
+        ChangeSlide(slidesCarousel.currentSlide);
+        var slidesListActive = slides.querySelector('.tours-list_item .btn.active');
+
+        if (slidesListActive) {
+          slidesListActive.classList.remove('active');
+        }
+
+        slidesList[slidesCarousel.currentSlide].classList.add('active');
+
+        if (slidesCarousel.currentSlide < slidesCarousel.innerElements.length - 1) {
+          slidesCarousel.currentSlide = slidesCarouselCurrentPrev + 1;
+        }
+      } else if (slidesCarouselCurrentPrev < slidesCarousel.currentSlide) {
+        ChangeSlide(slidesCarousel.currentSlide);
+
+        var _slidesListActive = slides.querySelector('.tours-list_item .btn.active');
+
+        if (_slidesListActive) {
+          _slidesListActive.classList.remove('active');
+        }
+
+        slidesList[slidesCarousel.currentSlide].classList.add('active');
+      }
+    };
+
+    var SetPrevSlide = function SetPrevSlide() {
+      if (slidesCarousel.currentSlide >= 0) {
+        if (slidesCarouselCurrentPrev == slidesCarousel.currentSlide) {
+          ChangeSlide(slidesCarousel.currentSlide - 1);
+          var slidesListActive = slides.querySelector('.tours-list_item .btn.active');
+
+          if (slidesListActive) {
+            slidesListActive.classList.remove('active');
+          }
+
+          slidesList[slidesCarousel.currentSlide - 1].classList.add('active');
+
+          if (slidesCarouselCurrentPrev > 1) {
+            slidesCarousel.currentSlide = slidesCarouselCurrentPrev - 1;
+          }
+        } else if (slidesCarouselCurrentPrev > slidesCarousel.currentSlide) {
+          ChangeSlide(slidesCarousel.currentSlide);
+
+          var _slidesListActive2 = slides.querySelector('.tours-list_item .btn.active');
+
+          if (_slidesListActive2) {
+            _slidesListActive2.classList.remove('active');
+          }
+
+          slidesList[slidesCarousel.currentSlide].classList.add('active');
+        }
+      }
     };
 
     console.log('Slides Founded!');
@@ -275,80 +334,58 @@ if (document.querySelector('.tours-carousel_slides')) {
 
     var slidesCarouselPrev = slides.querySelector('.btn-prev'),
         slidesCarouselNext = slides.querySelector('.btn-next'),
-        slidesCarouselCurrentPrev;
+        slidesCarouselCurrentPrev = 0,
+        currentPerPage;
+
+    if (window.outerWidth < 530) {
+      currentPerPage = 1;
+    } else if (window.outerWidth < 700) {
+      currentPerPage = 2;
+    } else if (window.outerWidth < 900) {
+      currentPerPage = 3;
+    } else {
+      currentPerPage = 4;
+    }
+
     var slidesCarousel = new Siema({
       selector: '.tours-list',
-      perPage: {
-        320: 1,
-        640: 2,
-        900: 3,
-        1200: 4
-      },
+      perPage: currentPerPage,
       onInit: function onInit() {
         console.log(this.currentSlide);
       },
-      onChange: function onChange() {}
+      onChange: function onChange() {
+        if (slidesCarouselCurrentPrev < slidesCarousel.currentSlide) {
+          if (slides.querySelector('.btn.active')) {
+            SetNextSlide();
+          } else {
+            slidesCarousel.currentSlide = 0;
+            slidesCarouselCurrentPrev = -1;
+            SetNextSlide();
+            slidesCarousel.currentSlide = 0;
+          }
+        } else if (slidesCarouselCurrentPrev > slidesCarousel.currentSlide) {
+          SetPrevSlide();
+        }
+
+        slidesCarouselCurrentPrev = slidesCarousel.currentSlide;
+      }
     });
     slidesCarouselNext.addEventListener('click', function () {
-      slidesCarouselCurrentPrev = slidesCarousel.currentSlide;
-      slidesCarousel.next();
-
-      if (slidesCarouselCurrentPrev == slidesCarousel.currentSlide) {
-        ChangeSlide(slidesCarousel.currentSlide);
-        var slidesListActive = slides.querySelector('.tours-list_item .btn.active');
-
-        if (slidesListActive) {
-          slidesListActive.classList.remove('active');
-        }
-
-        slidesList[slidesCarousel.currentSlide].classList.add('active');
-
-        if (slidesCarousel.currentSlide < slidesCarousel.innerElements.length - 1) {
-          slidesCarousel.currentSlide = slidesCarouselCurrentPrev + 1;
-        }
-      } else if (slidesCarouselCurrentPrev < slidesCarousel.currentSlide) {
-        ChangeSlide(slidesCarousel.currentSlide);
-
-        var _slidesListActive = slidesList.querySelector('.btn.active');
-
-        if (_slidesListActive) {
-          _slidesListActive.classList.remove('active');
-        }
-
-        slidesList[slidesCarousel.currentSlide].classList.add('active');
+      if (slides.querySelector('.btn.active')) {
+        slidesCarouselCurrentPrev = slidesCarousel.currentSlide;
+        slidesCarousel.next();
+      } else {
+        slidesCarousel.currentSlide = 0;
+        slidesCarouselCurrentPrev = -1;
+        slidesCarousel.next();
+        slidesCarousel.currentSlide = 0;
+        var translateBlock = slides.querySelector('.tours-list > div');
+        translateBlock.style.transform = 'translate3d(0px, 0px, 0px)';
       }
     });
     slidesCarouselPrev.addEventListener('click', function () {
       slidesCarouselCurrentPrev = slidesCarousel.currentSlide;
       slidesCarousel.prev();
-
-      if (slidesCarousel.currentSlide > 0) {
-        if (slidesCarouselCurrentPrev == slidesCarousel.currentSlide) {
-          ChangeSlide(slidesCarousel.currentSlide - 1);
-          var slidesListActive = slides.querySelector('.tours-list_item .btn.active');
-
-          if (slidesListActive) {
-            slidesListActive.classList.remove('active');
-          }
-
-          slidesList[slidesCarousel.currentSlide - 1].classList.add('active');
-
-          if (slidesCarouselCurrentPrev > 1) {
-            slidesCarousel.currentSlide = slidesCarouselCurrentPrev - 1;
-          }
-        } else if (slidesCarouselCurrentPrev > slidesCarousel.currentSlide) {
-          console.log(slidesCarouselCurrentPrev, slidesCarousel.currentSlide);
-          ChangeSlide(slidesCarousel.currentSlide);
-
-          var _slidesListActive2 = slidesList.querySelector('.btn.active');
-
-          if (_slidesListActive2) {
-            _slidesListActive2.classList.remove('active');
-          }
-
-          slidesList[slidesCarousel.currentSlide].classList.add('active');
-        }
-      }
     });
   })();
 }
