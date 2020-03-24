@@ -1,0 +1,50 @@
+.arctic .header_menu-nav .divider {
+  background: #F76363;
+}
+.arctic .header_menu-nav .nav-menu_list-link .btn::after {
+  background: #F76363;
+}
+
+.arctic .modals .modal .form .btn {
+  border-color: #F76363;
+}
+.arctic .divider {
+  background: #F76363;
+}
+.arctic .tours-list_item .btn .divider {
+  background: #F76363;
+}
+.arctic .content--main .btn-rounded {
+  border-color: #F76363;
+}
+.arctic.main--tours .tours_description .divider {
+  background: #F76363;
+}
+.arctic.main--tours .tours_list .tour .tag {
+  background: #F76363;
+}
+.arctic.main--tours .content--tour .btn-rounded {
+  border-color: #F76363;
+}
+.arctic.main--tours .tour-info .form .btn {
+  border-color: #F76363;
+}
+.arctic.main--tours .tour-info .tabs_list .tab_title .tab:after {
+  background: #F76363;
+}
+.arctic.main--tours .tour-info .tabs_content .tab_content.options .option .divider {
+  background: #F76363;
+}
+.arctic .content--info .form .btn-default {
+  border-color: #F76363;
+}
+.arctic .feedback .pagination .btn {
+  border-color: #F76363;
+  background: #F76363;
+}
+
+@media screen and (max-width: 1000px) and (orientation: portrait) {
+  .arctic .header_menu-nav .header_call {
+    border-color: #F76363;
+  }
+}

@@ -25,7 +25,12 @@
             <button class="btn header_menu-button container container--column container--justifyed" type="button" aria-label="Toggle menu"><span class="line"></span><span class="line"></span><span class="line"></span></button>
             <div class="header_menu-nav--wrapper">
               <nav class="header_menu-nav card container container--column">
-                <button class="btn btn-close" type="button" aria-label="Toggle menu"><span class="line"></span><span class="line"></span></button><img class="nav-menu_logo" src="static/images/general/russian_logo_min_dark.svg" alt="Russian Freedom">
+                <button class="btn btn-close" type="button" aria-label="Toggle menu"><span class="line"></span><span class="line"></span></button>
+                <div class="header_menu-nav--top container container--aligned-center"><img class="nav-menu_logo" src="static/images/general/russian_logo_min_dark.svg" alt="Russian Freedom">
+                  <div class="header_language">
+                    <button class="btn container container--aligned-center" type="button"><img src="static/images/general/rus.png" alt="Russian language"><span class="btn btn-underlined">Change language</span></button>
+                  </div>
+                </div>
                 <div class="divider"></div>
                 <ul class="nav-menu_list">
                   <li class="nav-menu_list-link"><a class="btn" href="./">На главную</a></li>
@@ -40,6 +45,15 @@
                   <li class="nav-menu_list-link baikal"><a class="btn" href="./baikal-index.html">Байкал</a></li>
                   <li class="nav-menu_list-link petersburg"><a class="btn" href="./petersburg-index.html">Санкт-петербург</a></li>
                   <li class="nav-menu_list-link moscow"><a class="btn" href="./moscow-index.html">Москва</a></li>
+                </ul>
+                <div class="header_contacts container container--column">
+                  <div class="divider"></div><a class="btn bold header_contacts__phone" href="tel:+74951098990">+7 (495) 109-89-90</a><a class="btn header_contacts__mail" href="mailto:mail@arctic-freedom.com">mail@arctic-freedom.com</a>
+                </div>
+                <button class="header_call btn btn-default bold" type="button">Заказать звонок</button>
+                <ul class="socials container">
+                  <li class="socials_link"><a class="btn" href="#" aria-label="Instagram"><img src="static/images/content/instagram.svg" alt="Instagram"></a></li>
+                  <li class="socials_link"><a class="btn" href="#" aria-label="Facebook"><img src="static/images/content/facebook.svg" alt="Facebook"></a></li>
+                  <li class="socials_link"><a class="btn" href="#" aria-label="WeChat"><img src="static/images/content/wechat.svg" alt="WeChat"></a></li>
                 </ul>
                 <ul class="nav-menu_info">
                   <li class="nav-menu_info-link"><a class="btn btn-link" href="#">Пользовательское соглашение</a></li>
@@ -115,6 +129,27 @@
             <input type="email" name="mail" placeholder="Ваш E-mail">
           </label>
           <button class="btn btn-default" type="submit">Отправить</button>
+        </form>
+      </div>
+      <div class="modal card" id="reserve">
+        <button class="btn btn-close" type="button" aria-label="Close modal"><span class="line"></span><span class="line"></span></button>
+        <h2 class="modal_title center">Оставьте заявку</h2>
+        <p class="modal_subtitle center">Мы свяжемся с вами в ближайшее время</p>
+        <div class="divider"></div>
+        <form class="form container container--column">
+          <label class="form_input">
+            <input type="text" name="name" placeholder="Ваше имя"><span class="hidden">Ваше имя</span>
+          </label>
+          <label class="form_input">
+            <input type="date" name="date" placeholder="Планируемая дата тура"><span class="hidden">Планируемая дата тура</span>
+          </label>
+          <label class="form_input">
+            <input type="text" name="phone" placeholder="+7 (___) ___ - __ - __"><span class="hidden">+7 (___) ___ - __ - __</span>
+          </label>
+          <label class="form_input">
+            <input type="email" name="name" placeholder="Ваш E-mail"><span class="hidden">Ваш E-mail</span>
+          </label>
+          <button class="btn btn-default" type="submit">Забронировать</button>
         </form>
       </div>
     </div>

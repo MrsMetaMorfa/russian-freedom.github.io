@@ -17,13 +17,12 @@ https://mrsmetamorfa.github.io/russian-freedom.github.io/
 	
 ```js/main.js``` тоже разделится на два, в ```children.js``` перемесятся скрипты дочерних сайтов.
 
-На данный момент html-структура неизменна для всех страниц.
-Все остальные изменения коснуться только стилей и скриптов.
-
-**Удалить отовсюду onclick**
-** Ссылки изменились на кнопки внутри .tours-carousel_slides**
+** Удалить отовсюду onclick и onscroll **
+** Ссылки изменились на кнопки внутри .tours-carousel_slides **
 ```<a class="btn btn-arrow" href=# aria-label=""></a>``` 
 =>
 ```<button class="btn btn-arrow btn-prev" type="button" aria-label="Prev"></button>```
 и 
 ```<button class="btn btn-arrow btn-next" type="button" aria-label="Next"></button>```
+
+** +1 модальное окно, изменения в header и в форме брониирования тура в информации о туре. **

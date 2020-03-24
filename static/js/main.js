@@ -58,11 +58,12 @@ var headerMenu = document.querySelector('header .header_menu'),
     headerMenuButtonOpen = headerMenu.querySelector('.header_menu-button'),
     headerMenuButtonClose = headerMenu.querySelector('.btn-close'),
     headerMenuBlock = headerMenu.querySelector('.header_menu-nav--wrapper'),
-    headerRequestCallButton = document.querySelector('.header .header_call'),
+    headerRequestCallButton = document.querySelectorAll('.header .header_call'),
     requestNotificationButton = document.querySelector('.call-when-open'),
     modalContainer = document.querySelector('.modals'),
     modalsList = modalContainer.querySelectorAll('.modal'),
     modalCloseButtons = document.querySelectorAll('.modals .modal .btn-close'),
+    modalReserve = document.querySelector('.modals #reserve'),
     modalRequest = document.querySelector('.modals #request'),
     modalNotification = document.querySelector('.modals #notification');
 
@@ -76,14 +77,14 @@ function ToggleMenuVisibility() {
 
 headerMenuBlock.addEventListener('click', ToggleMenuVisibility);
 headerMenuButtonOpen.addEventListener('click', ToggleMenuVisibility);
-headerMenuButtonClose.addEventListener('click', ToggleMenuVisibility);
-headerMenuBlock.querySelector('.header_menu-nav').addEventListener('click', function (e) {
-  return e.stopPropagation();
-});
-headerRequestCallButton.addEventListener('click', function () {
-  modalContainer.classList.add('active');
-  modalRequest.classList.add('active');
-});
+headerMenuButtonClose.addEventListener('click', ToggleMenuVisibility); //headerMenuBlock.querySelector('.header_menu-nav').addEventListener('click', (e) => e.stopPropagation());
+
+for (var c = 0; c < headerRequestCallButton.length; c++) {
+  headerRequestCallButton[c].addEventListener('click', function () {
+    modalContainer.classList.add('active');
+    modalRequest.classList.add('active');
+  });
+}
 
 if (requestNotificationButton) {
   requestNotificationButton.addEventListener('click', function () {
@@ -108,6 +109,7 @@ for (var b = 0; b < modalCloseButtons.length; b++) {
   modalCloseButtons[b].addEventListener('click', function () {
     modalContainer.classList.remove('active');
     modalRequest.classList.remove('active');
+    modalReserve.classList.remove('active');
     modalNotification.classList.remove('active');
   });
 } // Add a function that generates pagination to prototype
@@ -337,11 +339,11 @@ if (document.querySelector('.tours-carousel_slides')) {
         slidesCarouselCurrentPrev = 0,
         currentPerPage;
 
-    if (window.outerWidth < 530) {
+    if (window.outerWidth < 420) {
       currentPerPage = 1;
-    } else if (window.outerWidth < 700) {
+    } else if (window.outerWidth < 590) {
       currentPerPage = 2;
-    } else if (window.outerWidth < 900) {
+    } else if (window.outerWidth < 760) {
       currentPerPage = 3;
     } else {
       currentPerPage = 4;
@@ -422,4 +424,74 @@ if (document.querySelector('.main--tours .tour-info .tabs')) {
       _loop3(_t);
     }
   })();
+}
+
+if (document.querySelector('.main--tours')) {
+  console.log('Tours main found!');
+
+  if (window.outerWidth < 770) {
+    console.log('Mobile detected');
+
+    if (document.querySelector('.tours_list')) {
+      var toursCarouselWrapper = document.querySelector('.tours_list'),
+          toursCarouselList = document.querySelectorAll('.tours_list .tour'),
+          target = 0;
+      var toursCarousel = new Siema({
+        selector: '.tours_list--inner',
+        perPage: 1,
+        onInit: function onInit() {
+          target = this.currentSlide;
+          toursCarouselList[target].classList.add('current');
+          console.log('Carousel init');
+        },
+        onChange: function onChange() {
+          target = this.currentSlide;
+          toursCarouselWrapper.querySelector('.tour.current').classList.remove('current');
+          toursCarouselList[target].classList.add('current');
+        }
+      });
+    } else {
+      var currentPerPage = 4;
+
+      if (window.outerWidth < 420) {
+        currentPerPage = 1;
+      } else if (window.outerWidth < 590) {
+        currentPerPage = 2;
+      } else if (window.outerWidth < 760) {
+        currentPerPage = 3;
+      }
+
+      var _toursCarousel = new Siema({
+        selector: '.tours-list',
+        perPage: currentPerPage,
+        onInit: function onInit() {
+          console.log('Carousel init');
+        }
+      });
+
+      var tours = document.querySelector('.tours'),
+          btnPrev = '<button class="btn btn-arrow btn-prev" type="button" aria-label="Prev"><img src="static/images/content/left.svg" alt="Prev"></button>',
+          btnNext = '<button class="btn btn-arrow btn-next" type="button" aria-label="Next"><img src="static/images/content/right.svg" alt="Next"></button>';
+      tours.insertAdjacentHTML('afterbegin', btnPrev);
+      tours.insertAdjacentHTML('beforeend', btnNext);
+      tours.querySelector('.btn-prev').addEventListener('click', function () {
+        return _toursCarousel.prev();
+      });
+      tours.querySelector('.btn-next').addEventListener('click', function () {
+        return _toursCarousel.next();
+      });
+      console.log(tours);
+    }
+  }
+}
+
+if (document.querySelector('.open-form-request')) {
+  var buttonsList = document.querySelectorAll('.open-form-request');
+
+  for (var _b = 0; _b < buttonsList.length; _b++) {
+    buttonsList[_b].addEventListener('click', function () {
+      modalContainer.classList.add('active');
+      modalReserve.classList.add('active');
+    });
+  }
 }
