@@ -68,16 +68,24 @@ var headerMenu = document.querySelector('header .header_menu'),
     modalNotification = document.querySelector('.modals #notification');
 
 function ToggleMenuVisibility() {
+  console.log(headerMenuBlock.classList.contains('show'), 'Click!');
+  var bodyScroll = OverlayScrollbars(document.querySelectorAll("body"), {});
+
   if (headerMenuBlock.classList.contains('show')) {
+    bodyScroll.update();
     headerMenuBlock.classList.remove('show');
   } else {
+    bodyScroll.destroy();
     headerMenuBlock.classList.add('show');
   }
 }
 
 headerMenuBlock.addEventListener('click', ToggleMenuVisibility);
 headerMenuButtonOpen.addEventListener('click', ToggleMenuVisibility);
-headerMenuButtonClose.addEventListener('click', ToggleMenuVisibility); //headerMenuBlock.querySelector('.header_menu-nav').addEventListener('click', (e) => e.stopPropagation());
+headerMenuButtonClose.addEventListener('click', function (e) {
+  e.stopPropagation();
+  ToggleMenuVisibility();
+}); //headerMenuBlock.querySelector('.header_menu-nav').addEventListener('click', (e) => e.stopPropagation());
 
 for (var c = 0; c < headerRequestCallButton.length; c++) {
   headerRequestCallButton[c].addEventListener('click', function () {
