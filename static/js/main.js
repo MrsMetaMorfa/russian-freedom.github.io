@@ -176,11 +176,7 @@ if (document.querySelector('.feedback')) {
       }
     }
   });
-  feedbackCarousel.addPagination();
-  console.log(document.querySelectorAll('.feedback .pagination .btn'));
-  setInterval(function () {
-    return feedbackCarousel.next();
-  }, 5000);
+  feedbackCarousel.addPagination(); //setInterval(() => feedbackCarousel.next(), 5000)
 }
 
 if (document.querySelector('.main--tours .tours_list--inner')) {
@@ -539,14 +535,16 @@ if (document.querySelector('.main--tours')) {
       });
 
       var tours = document.querySelector('.tours'),
-          btnPrev = '<button class="btn btn-arrow btn-prev" type="button" aria-label="Prev"><img src="static/images/content/left.svg" alt="Prev"></button>',
-          btnNext = '<button class="btn btn-arrow btn-next" type="button" aria-label="Next"><img src="static/images/content/right.svg" alt="Next"></button>';
-      tours.insertAdjacentHTML('afterbegin', btnPrev);
-      tours.insertAdjacentHTML('beforeend', btnNext);
-      tours.querySelector('.btn-prev').addEventListener('click', function () {
+          btnPrev = tours.querySelector('.btn-prev'),
+          btnNext = tours.querySelector('.btn-next'); // tours.insertAdjacentHTML('afterbegin', btnPrev);
+      // tours.insertAdjacentHTML('beforeend', btnNext);
+
+      btnPrev.style.display = 'block';
+      btnNext.style.display = 'block';
+      btnPrev.addEventListener('click', function () {
         return _toursCarousel.prev();
       });
-      tours.querySelector('.btn-next').addEventListener('click', function () {
+      btnNext.addEventListener('click', function () {
         return _toursCarousel.next();
       });
       console.log(tours);

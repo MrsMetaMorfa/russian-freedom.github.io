@@ -27,3 +27,5 @@ https://mrsmetamorfa.github.io/russian-freedom.github.io/
 ```<button class="btn btn-arrow btn-next" type="button" aria-label="Next"></button>```
 
 ** +1 модальное окно, изменения в header и в форме брониирования тура в информации о туре. **
+
+** Добавлены .btn-arrow в .tours на странице arctic-tours.html **
