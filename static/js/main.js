@@ -51,7 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var headerMenu = OverlayScrollbars(document.querySelectorAll('.header_menu-nav'), {}),
       tabContent = OverlayScrollbars(document.querySelectorAll('.tabs .tabs_content'), {}),
-      modalBlock = OverlayScrollbars(document.querySelectorAll('.modals .modal'), {});
+      modalBlock = OverlayScrollbars(document.querySelectorAll('.modals .modal'), {}) //toursList = OverlayScrollbars(document.querySelector('.main--tours .tours_list'), { })
+  ;
 }); //Header
 
 var headerMenu = document.querySelector('header .header_menu'),
